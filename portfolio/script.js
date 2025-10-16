@@ -45,12 +45,18 @@ ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
 ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 
 const typed = new Typed('.multiple-text', {
-    strings: ['Frontend Developer', 'Web Designer', 'Full Stack Developer'],
+    strings: ['Full Stack Developer'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
     loop: true
 });
+
+// Footer current year
+const yearSpan = document.getElementById('current-year');
+if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+}
 
 // Dark/Light Mode Toggle
 const themeToggle = document.querySelector('#theme-toggle');
@@ -82,23 +88,29 @@ const formStatus = document.getElementById('form-status');
 
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
     const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
-    
+    formStatus.textContent = 'Sending...';
+    formStatus.style.color = 'var(--main-color)';
+
+    // Post to FormSubmit via AJAX so the page doesn't reload
     try {
-        // Here you would typically send the data to your backend
-        // For now, we'll just simulate a successful submission
-        formStatus.textContent = 'Message sent successfully!';
-        formStatus.style.color = 'var(--main-color)';
-        contactForm.reset();
-        
-        setTimeout(() => {
-            formStatus.textContent = '';
-        }, 5000);
-    } catch (error) {
+        const response = await fetch('https://formsubmit.co/ajax/sarthakbk390@gmail.com', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: formData,
+        });
+        const result = await response.json();
+        if (response.ok) {
+            formStatus.textContent = 'Message sent successfully! Check your inbox.';
+            contactForm.reset();
+        } else {
+            throw new Error(result.message || 'Failed to send');
+        }
+    } catch (err) {
         formStatus.textContent = 'Error sending message. Please try again.';
         formStatus.style.color = 'red';
+    } finally {
+        setTimeout(() => { formStatus.textContent = ''; }, 6000);
     }
 });
 

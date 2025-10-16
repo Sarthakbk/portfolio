@@ -37,6 +37,12 @@ body {
     transition: var(--transition);
 }
 
+/* Accessible focus styles */
+:focus-visible {
+    outline: 3px solid var(--main-color);
+    outline-offset: 2px;
+}
+
 section {
     min-height: 100vh;
     padding: 10rem 9% 2rem;
@@ -141,6 +147,17 @@ span {
     line-height: 1.3;
 }
 
+.exp-badge {
+    font-size: 1.2rem;
+    margin-left: 1rem;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--main-color);
+    color: var(--text-color);
+    padding: .4rem .8rem;
+    border-radius: 999px;
+    vertical-align: middle;
+}
+
 .home-content p {
     font-size: 1.6rem;
     margin: 2rem 0;
@@ -185,6 +202,18 @@ span {
     transform: scale(1.05);
 }
 
+.btn-secondary {
+    background: transparent;
+    color: var(--text-color);
+    border: .2rem solid var(--main-color);
+}
+
+.hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .about {
     display: flex;
     justify-content: center;
@@ -196,6 +225,24 @@ span {
 .about-img img {
     width: 35vw;
     border-radius: 2rem;
+}
+
+/* Consistent small circular profile photo */
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--main-color);
+    box-shadow: 0 0 0.8rem rgba(0,0,0,0.25);
+}
+
+/* Ensure circular sizing overrides large hero image styles */
+.home-img .profile-photo {
+    width: 120px;
+    height: 120px;
+    animation: none;
+    object-position: 50% 30%;
 }
 
 .heading {
@@ -566,37 +613,136 @@ span {
     }
 }
 
-/* Skills Icons Section Styles */
-.skills-icons {
+/* Technical Skills (grouped) */
+.tech-skills {
     padding: 4rem 0;
-    background-color: #f9f9f9;
+    background: var(--second-bg-color);
 }
 
-.skills-icons-container {
+.tech-skills .heading {
+    color: var(--text-color);
+}
+/* Ensure text in technical skills is readable on dark background */
+.tech-skills .tech-group h3 { color: var(--text-color); }
+.tech-skills .tech-group li { color: var(--text-color); }
+
+.tech-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 3rem 6rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+    justify-items: start;
+}
+
+.tech-group h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+}
+
+.tech-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--main-color);
+    flex: 0 0 22px;
+}
+
+.tech-group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tech-group li {
+    font-size: 1.6rem;
+    color: #333;
+    margin: .6rem 0;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .tech-skills-grid { grid-template-columns: 1fr; }
+}
+
+/* Experience Section */
+.experience {
+    background: var(--bg-color);
+}
+
+.experience .heading {
+    margin-bottom: 3rem;
+}
+
+.experience-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.exp-card {
+    background: var(--second-bg-color);
+    border-radius: 1.2rem;
+    padding: 2rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.exp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+}
+
+.exp-header {
+    margin-bottom: 1.2rem;
+}
+
+.exp-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.exp-meta {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: .8rem;
+    opacity: .9;
+    font-size: 1.4rem;
+    margin-top: .4rem;
 }
 
-.skill-icon {
-    background: #fff;
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    width: 150px;
-    text-align: center;
+.exp-sep { opacity: .6; }
+
+.exp-points {
+    margin-left: 1.2rem;
+    margin-top: 1rem;
 }
 
-.skill-icon img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 0.5rem;
+.exp-points li {
+    font-size: 1.5rem;
+    margin: .6rem 0;
 }
 
-.skill-icon span {
-    display: block;
-    color: #333;
-    font-weight: bold;
+.exp-tags {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+}
+
+.exp-tags span {
+    background: rgba(0,0,0,0.2);
+    padding: .4rem .9rem;
+    border-radius: 999px;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .experience-container {
+        grid-template-columns: 1fr;
+    }
 }
