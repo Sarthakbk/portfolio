@@ -238,49 +238,44 @@ span {
 }
 
 .skills {
-    background: var(--bg-color);
+    padding: 4rem 0;
+    background-color: #f9f9f9;
 }
 
 .skills-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .skill-box {
-    background: var(--second-bg-color);
-    padding: 2rem;
-    border-radius: 2rem;
-    transition: var(--transition);
-}
-
-.skill-box:hover {
-    transform: translateY(-5px);
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 200px;
+    text-align: center;
 }
 
 .skill-box h3 {
-    font-size: 2rem;
     margin-bottom: 1rem;
+    color: #333;
 }
 
 .skill-progress {
-    background: var(--bg-color);
-    height: 2rem;
-    border-radius: 1rem;
+    background: #e0e0e0;
+    border-radius: 5px;
+    height: 10px;
     overflow: hidden;
 }
 
 .progress-bar {
-    background: var(--main-color);
+    background: #007bff;
     height: 100%;
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-color);
-    font-size: 1.2rem;
-    font-weight: 600;
-    transition: width 1s ease-in-out;
+    border-radius: 5px;
+    transition: width 0.5s ease;
 }
 
 .portfolio {
@@ -569,4 +564,39 @@ span {
         text-align: center;
         margin-top: 2rem;
     }
+}
+
+/* Skills Icons Section Styles */
+.skills-icons {
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+}
+
+.skills-icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-icon {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 150px;
+    text-align: center;
+}
+
+.skill-icon img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.5rem;
+}
+
+.skill-icon span {
+    display: block;
+    color: #333;
+    font-weight: bold;
 }
